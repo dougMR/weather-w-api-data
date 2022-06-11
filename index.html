@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <link href="./style.css" rel="stylesheet" />
+    </head>
+    <script src="script.js" defer></script>
+    <body class="d-flex align-items-center">
+        <div id="weather-container" class="container">
+            <div class="my-row row">
+                <div
+                    id="todaysWeatherIcon"
+                    class="my-col col-4 col-md-2 text-center align-self-center"
+                >
+                    ☁️
+                </div>
+                <div
+                    class="my-col col-4 col-md-2 mb-3 mb-md-0 text-center text-md-start align-self-center"
+                >
+                    <span id="todaysTemp">48</span>
+                    <div class="standard-font-size">
+                        <strong>°F</strong> | °C
+                    </div>
+                </div>
+                <div
+                    id="todaysDetails"
+                    class="my-col col-4 col-md-3 mb-3 mb-sm-0 text-sm-center text-md-start smallFontSize align-self-center"
+                >
+                    Precipitation: 88%<br />
+                    Humidity: 86%<br />
+                    Wind: 10mph
+                </div>
+                <div
+                    class="my-col col-0 col-md-5 text-md-end order-first order-md-last px-4 standard-font-size"
+                >
+                    <div>
+                        <select name="" id="location">
+                            <option value="Ocean City">
+                                Ocean City, NJ 08226
+                            </option>
+                            <option value="Syracuse">Syracuse, NY 13224</option>
+                            <option value="San Francisco">
+                                San Francisco, CA 94109
+                            </option>
+                        </select>
+                    </div>
+                    <div id="today">Today</div>
+                    <div id="weather-now">Cloudy</div>
+                </div>
+            </div>
+            <hr />
+            <div
+                id="forecast"
+                class="my-row row align-items-stretch justify-content-around"
+            ></div>
+            <hr />
+            <div id="zip-form" class="row d-flex align-items-center">
+                <div id="city-name" class="col-12 col-sm-6"></div>
+                <div class="col-12 col-sm-6">
+                    <label for="zip">beta: Enter zipcode</label>
+                    <input
+                        type="text"
+                        name="zip"
+                        id="zip-input"
+                        minlength="5"
+                        maxlength="5"
+                        size="5"
+                    />
+                    <button id="zip-button">GET WEATHER BY ZIP</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
