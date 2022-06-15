@@ -2,54 +2,14 @@ const cities = {
     "Ocean City": {
         state: "NJ",
         country: "USA",
-        // temp: 77,
-        // wind: 10,
-        // humidity: 50,
-        // precipChance: 25,
-        // weatherIcon: "🌤",
-        // forecast: [
-        //     { day: "Wed", temp: 74, icon: "🌦" },
-        //     { day: "Thu", temp: 72, icon: "🌦" },
-        //     { day: "Fri", temp: 79, icon: "☀️" },
-        //     { day: "Sat", temp: 82, icon: "🌤" },
-        //     { day: "Sun", temp: 100, icon: "🔥" },
-        // ],
     },
     Syracuse: {
         state: "NY",
         country: "USA",
-        // temp: 45,
-        // wind: 50,
-        // humidity: 88,
-        // precipChance: 110,
-        // weatherIcon: "🌧",
-        // forecast: [
-        //     { day: "Weds", temp: 46, icon: "🌧" },
-        //     { day: "Thu", temp: 51, icon: "🌧" },
-        //     { day: "Fri", temp: 57, icon: "🌧" },
-        //     { day: "Sat", temp: 55, icon: "🌦" },
-        //     { day: "Sun", temp: 56, icon: "🌧" },
-        // ],
     },
     "San Francisco": {
         state: "CA",
         country: "USA",
-        // "lat": 37.7790262,
-        // "lon": -122.419906,
-        // "country": "US",
-        // "state": "California",
-        // temp: 65,
-        // wind: 5,
-        // humidity: 0,
-        // precipChance: 0,
-        // weatherIcon: "☀️",
-        // forecast: [
-        //     { day: "Weds", temp: 65, icon: "☀️" },
-        //     { day: "Thu", temp: 66, icon: "☀️" },
-        //     { day: "Fri", temp: 70, icon: "☀️" },
-        //     { day: "Sat", temp: 67, icon: "☀️" },
-        //     { day: "Sun", temp: 66, icon: "☀️" },
-        // ],
     },
 };
 
@@ -109,24 +69,28 @@ const months = [
     "Decembar",
 ];
 
-const zipButton = document.getElementById("zip-button");
-zipButton.addEventListener("click", (event) => {
-    const zip = document.getElementById("zip-input").value;
+// const zipButton = document.getElementById("zip-button");
+const zipInput = document.getElementById("zip-input");
+// zipButton.addEventListener("click", (event) => {
+//     useInputZip();
+// });
+document.addEventListener("keydown", (event) => {
+    // console.log(event.code);
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+        useInputZip();
+    }
+});
+zipInput.addEventListener("input", (event) => {
+    console.log("zip: ", event.target.value);
+    useInputZip();
+});
+const useInputZip = () => {
+    const zip = zipInput.value;
     if (zip && zip.length === 5) {
         // check legit zip code
         getWeatherByZipcode(zip);
     }
-});
-document.addEventListener("keydown", (event) => {
-    console.log(event.code);
-    if (event.code === "Enter" || event.code === "NumpadEnter") {
-        const zip = document.getElementById("zip-input").value;
-        if (zip && zip.length === 5) {
-            // check legit zip code
-            getWeatherByZipcode(zip);
-        }
-    }
-});
+}
 
 const locSelector = document.getElementById("location");
 locSelector.addEventListener("change", (event) => {
@@ -154,6 +118,8 @@ const getWeatherByZipcode = async (zip) => {
     );
     const data = await response.json();
     updateHTML(data);
+    // return selector to "choose a city"
+    locSelector.options[0].selected = true;
 };
 
 const getWeatherByLatLon = async (lat, lon) => {
@@ -209,7 +175,7 @@ const updateHTML = async (weatherInfo) => {
     for (let day of fiveDays) {
         dayIndex++;
         dayIndex = dayIndex % weekdays.length;
-        forecastHTML += `<div class="forecast-day col-2 text-center">
+        forecastHTML += `<div class="forecast-day col-4 col-sm-2 text-center">
         <div class="day">${weekdays[dayIndex]}</div>
         <div class="description">${day.weather[0].description}</div>
         <div class="small-icon">
@@ -238,5 +204,7 @@ const updateHTML = async (weatherInfo) => {
 // http://api.openweathermap.org/geo/1.0/direct?q=Sanfrancisco,CA,USA&limit=1&appid=587105ef534143cf16cb1c401766f57d
 //
 
+// Start with first city of select menu
+locSelector.options[1].selected = true;
 const startEvent = new Event("change");
 locSelector.dispatchEvent(startEvent);

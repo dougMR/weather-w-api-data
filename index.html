@@ -16,15 +16,18 @@
     <script src="script.js" defer></script>
     <body class="d-flex align-items-center">
         <div id="weather-container" class="container">
-            <div class="my-row row">
+            <div class="row">
+                <div id="city-name" class="col text-center text-lg-start"></div>
+            </div>
+            <div class="row align-items-center">
                 <div
                     id="todaysWeatherIcon"
-                    class="my-col col-4 col-md-2 text-center align-self-center"
+                    class="my-col col-4 col-md-3 text-center "
                 >
                     ☁️
                 </div>
                 <div
-                    class="my-col col-4 col-md-2 mb-3 mb-md-0 text-center text-md-start align-self-center"
+                    class="my-col col-4 col-md-3 mb-3 mb-md-0 text-center text-md-start "
                 >
                     <span id="todaysTemp">48</span>
                     <div class="standard-font-size">
@@ -33,26 +36,15 @@
                 </div>
                 <div
                     id="todaysDetails"
-                    class="my-col col-4 col-md-3 mb-3 mb-sm-0 text-sm-center text-md-start smallFontSize align-self-center"
+                    class="my-col col-4 col-md-3 mb-3 mb-sm-0 text-sm-center text-md-start smallFontSize "
                 >
                     Precipitation: 88%<br />
                     Humidity: 86%<br />
                     Wind: 10mph
                 </div>
-                <div
-                    class="my-col col-0 col-md-5 text-md-end order-first order-md-last px-4 standard-font-size"
+                <div id="today-main"
+                    class="my-col col-0 col-md-3 text-md-end order-first order-md-last px-4 standard-font-size"
                 >
-                    <div>
-                        <select name="" id="location">
-                            <option value="Ocean City">
-                                Ocean City, NJ 08226
-                            </option>
-                            <option value="Syracuse">Syracuse, NY 13224</option>
-                            <option value="San Francisco">
-                                San Francisco, CA 94109
-                            </option>
-                        </select>
-                    </div>
                     <div id="today">Today</div>
                     <div id="weather-now">Cloudy</div>
                 </div>
@@ -60,24 +52,37 @@
             <hr />
             <div
                 id="forecast"
-                class="my-row row align-items-stretch justify-content-around"
+                class=" row align-items-stretch justify-content-around"
             ></div>
             <hr />
-            <div id="zip-form" class="row d-flex align-items-center">
-                <div id="city-name" class="col-12 col-sm-6"></div>
-                <div class="col-12 col-sm-6">
-                    <label for="zip">beta: Enter zipcode</label>
-                    <input
-                        type="text"
-                        name="zip"
-                        id="zip-input"
-                        minlength="5"
-                        maxlength="5"
-                        size="5"
-                    />
-                    <button id="zip-button">GET WEATHER BY ZIP</button>
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <select name="" id="location">
+                        <option value="default">select a city</option>
+                        <option value="Ocean City">
+                            Ocean City, NJ 08226
+                        </option>
+                        <option value="Syracuse">Syracuse, NY 13224</option>
+                        <option value="San Francisco">
+                            San Francisco, CA 94109
+                        </option>
+                    </select>
+                </div>
+                <div id="zip-form" class="col">
+                        <label for="zip">beta: Enter zipcode</label>
+                        <input
+                            type="text"
+                            name="zip"
+                            id="zip-input"
+                            minlength="5"
+                            maxlength="5"
+                            size="5"
+                        />
+                        <!-- <button id="zip-button">GET WEATHER BY ZIP</button> -->
                 </div>
             </div>
+            
+            
         </div>
     </body>
 </html>

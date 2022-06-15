@@ -69,25 +69,30 @@ select {
 #city-name {
     color: #222;
     font-weight: bold;
-    font-size: 1.2rem;
-    text-align: left;
+    font-size: 1.5rem;
     letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 #zip-form {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     /* border-top: 0.25px solid silver; */
-    padding: 0 1rem 0.5rem;
+    /* padding: 0 1rem 0.5rem; */
     font-size: 0.8rem;
-    text-align: right;
+    text-align: center;
     color: grey;
 }
+/* #zip-form label {
+    vertical-align: middle;
+} */
 #zip-input {
     border: 1px solid grey;
     color: #333;
     background-color: transparent;
+    vertical-align: middle;
     /* box-shadow: inset 0 0 0.5rem grey; */
 }
-#zip-button {
+/* #zip-button {
     border: 1px solid grey;
     border-radius: 1rem;
     font-size: 0.9em;
@@ -98,5 +103,70 @@ select {
 }
 #zip-button:hover {
     background-color: lightgrey;
-    /* color: white; */
+} */
+
+/* @media (max-width: 510px) {
+    #zip-form {
+        text-align: center;
+    }
+    #zip-input {
+        border: 1px solid grey;
+        color: #333;
+        background-color: transparent;
+        font-size: 2rem;
+        border-radius: 1rem;
+    }
+} */
+@media (min-width: 991px){
+    /* bootstrap md */
+    #city-name {
+        /* text-align: left; */
+        padding-left: 2rem;
+    }
+}
+@media(max-width: 767px){
+    /* bootstrap small */
+
+    #today-main {
+        display:none;
+    }
+    
+    #todays-overview > div {
+        display: inline-block;
+        margin: 0;
+    }
+    select {
+        text-align: left;
+        margin-right: 1rem;
+    }
+}
+@media (max-width: 575px){
+    /* bootstrap xs */
+    #city-name {
+        font-size: 1.1rem;
+    }
+    .forecast-day .description {
+        font-size: 0.7em;
+    }
+    .forecast-day:nth-child(-n+3) {
+        margin-bottom: 2rem;
+    }
+    .small-icon {
+        margin: -0.8rem;
+    }
+    #zip-input {
+        font-size: 2rem;
+        border-radius: 1rem;
+    }
+    #weather-container {
+        margin: 0;
+    }
+}
+@media (max-width: 420px){
+    #todaysTemp {
+        font-size: 28px;
+    }
+    #select-div {
+        display: block !important;
+    }
 }
