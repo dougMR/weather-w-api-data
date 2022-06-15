@@ -106,6 +106,7 @@ locSelector.addEventListener("change", (event) => {
             return response.json();
         })
         .then((data) => {
+            console.log(data);
             const lat = data[0].lat;
             const lon = data[0].lon;
             getWeatherByLatLon(lat, lon);
@@ -124,12 +125,16 @@ const getWeatherByZipcode = async (zip) => {
 
 const getWeatherByLatLon = async (lat, lon) => {
     console.log("getWeatherByLatLon()");
+    
     // Get weather for that lat/lon
     const weatherRequest = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=587105ef534143cf16cb1c401766f57d`
     );
     const weatherInfo = await weatherRequest.json();
+    
     updateHTML(weatherInfo);
+    zipInput.value = "";
+    // TODO: get zipcode of pulldown city and put it here
 };
 
 const updateHTML = async (weatherInfo) => {
