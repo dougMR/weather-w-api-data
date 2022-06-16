@@ -66,6 +66,9 @@ select {
     font-size: 0.9em;
     line-height: 1.1em;
 }
+.forecast-day .temp {
+    font-weight: bold;
+}
 #city-name {
     color: #222;
     font-weight: bold;

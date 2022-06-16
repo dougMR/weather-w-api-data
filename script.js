@@ -153,7 +153,8 @@ const updateHTML = async (weatherInfo) => {
     document.getElementById("city-name").innerHTML =
         weatherInfo.name + " - " + today;
     // Show that weather in the HTML page
-    document.getElementById("todaysTemp").innerHTML = weatherInfo.main.temp;
+    const tempToday = Math.round(weatherInfo.main.temp * 10) / 10;
+    document.getElementById("todaysTemp").innerHTML = tempToday;
     document.getElementById(
         "todaysDetails"
     ).innerHTML = `${weatherInfo.weather[0].description}<br/>
@@ -180,13 +181,14 @@ const updateHTML = async (weatherInfo) => {
     for (let day of fiveDays) {
         dayIndex++;
         dayIndex = dayIndex % weekdays.length;
+        const temp = Math.round(day.main.temp * 10) / 10;
         forecastHTML += `<div class="forecast-day col-4 col-sm-2 text-center">
         <div class="day">${weekdays[dayIndex]}</div>
         <div class="description">${day.weather[0].description}</div>
         <div class="small-icon">
             ${getIcon(day.weather[0])}
         </div>
-        ${day.main.temp}°
+        <span class="temp">${temp}°</span>
     </div>`;
     }
     document.getElementById("forecast").innerHTML = forecastHTML;
