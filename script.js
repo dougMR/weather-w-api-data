@@ -90,7 +90,7 @@ const useInputZip = () => {
         // check legit zip code
         getWeatherByZipcode(zip);
     }
-}
+};
 
 const locSelector = document.getElementById("location");
 locSelector.addEventListener("change", (event) => {
@@ -125,16 +125,18 @@ const getWeatherByZipcode = async (zip) => {
 
 const getWeatherByLatLon = async (lat, lon) => {
     console.log("getWeatherByLatLon()");
-    
+
     // Get weather for that lat/lon
     const weatherRequest = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=587105ef534143cf16cb1c401766f57d`
     );
     const weatherInfo = await weatherRequest.json();
-    
+
     updateHTML(weatherInfo);
     zipInput.value = "";
     // TODO: get zipcode of pulldown city and put it here
+    // v get city/area name(s) via lat/lon
+    // http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={limit}&appid={API key}
 };
 
 const updateHTML = async (weatherInfo) => {
@@ -177,7 +179,6 @@ const updateHTML = async (weatherInfo) => {
     const fiveDays = fiveDayData.list;
     let forecastHTML = "";
     let dayIndex = todayInt;
-    let count = 0;
     for (let day of fiveDays) {
         dayIndex++;
         dayIndex = dayIndex % weekdays.length;
